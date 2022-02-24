@@ -23,6 +23,10 @@ app.post('/',async(req:Request,res:Response)=>{
     return res.status(201).json(await todoClient.createList(newlist))
 })
 
+app.get('/cathegories',async(req:Request,res:Response)=>{
+    return res.status(200).json(await todoClient.getCathegories())
+})
+
 
 
 

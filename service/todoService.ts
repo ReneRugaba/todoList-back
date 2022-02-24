@@ -1,4 +1,4 @@
-import { Cathegory, List, PrismaClient } from "@prisma/client";
+import { Cathegory, List, PrismaClient, PrismaPromise } from "@prisma/client";
 
 
 export default class TodoService {
@@ -8,9 +8,13 @@ export default class TodoService {
         this.prismaClient= new PrismaClient()
     }
 
-    findAll =async()=> await this.prismaClient.list.findMany()
+    findAll =async():Promise<List[]>=> await this.prismaClient.list.findMany()
 
-    createList=async(list:List)=> await this.prismaClient.list.create({data:list})
+    createList=async(list:List):Promise<List>=> await this.prismaClient.list.create({data:list})
+
+    getCathegories=async():Promise<Cathegory[]>=>{
+        return await this.prismaClient.cathegory.findMany()
+    }
 
     creatCathegory=()=>{
         let cathegoryArray=["Legumes","Fruits","Viandes","Bonbons","Patisseries"]

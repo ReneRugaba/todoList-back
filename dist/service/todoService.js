@@ -14,6 +14,9 @@ class TodoService {
     constructor() {
         this.findAll = () => __awaiter(this, void 0, void 0, function* () { return yield this.prismaClient.list.findMany(); });
         this.createList = (list) => __awaiter(this, void 0, void 0, function* () { return yield this.prismaClient.list.create({ data: list }); });
+        this.getCathegories = () => __awaiter(this, void 0, void 0, function* () {
+            return yield this.prismaClient.cathegory.findMany();
+        });
         this.creatCathegory = () => {
             let cathegoryArray = ["Legumes", "Fruits", "Viandes", "Bonbons", "Patisseries"];
             cathegoryArray.map((item) => __awaiter(this, void 0, void 0, function* () {
