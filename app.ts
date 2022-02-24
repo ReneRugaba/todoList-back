@@ -1,4 +1,4 @@
-import { Cathegory, List } from '@prisma/client';
+import { List } from '@prisma/client';
 import express, { Request, Response } from 'express';
 import TodoService from './service/todoService';
 
