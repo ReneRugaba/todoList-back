@@ -1,4 +1,5 @@
-import express from 'express';
+import { Cathegory, List } from '@prisma/client';
+import express, { Request, Response } from 'express';
 import TodoService from './service/todoService';
 
 const app = express();
@@ -9,9 +10,22 @@ app.use(express.urlencoded({extended:true}))
 
 const todoClient = new TodoService()
 
-app.get('/',async (req, res) => {
+// to create cathegories for first time
+// todoClient.creatCathegory()
+
+app.get('/',async (req:Request,res:Response) => {
     return res.status(200).json(await todoClient.findAll())
 });
+
+app.post('/',async(req:Request,res:Response)=>{
+    let newlist= req.body as List
+
+    return res.status(201).json(await todoClient.createList(newlist))
+})
+
+
+
+
 app.listen(port, () => {
   
   return console.log(`server is listening on ${port}`);
